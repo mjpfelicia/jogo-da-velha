@@ -275,7 +275,7 @@ function checkwinCondition() {
 
 
 
-// limpa o jogo, declara o vencedo e atualizar o placar
+// function limpar o jogo, declara o vencedor e atualiza o placar
 
 function declareWinner(winner) {
     let scoreboardx = document.querySelector("#scoreboard-1");
@@ -326,3 +326,5 @@ function declareWinner(winner) {
     }
 
 }
+
+
