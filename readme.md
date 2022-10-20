@@ -16,7 +16,6 @@ Obrigado por conferir.
 - Tecnologias usadas
 - O que eu aprendi
 - Recursos úteis
-- Desafio
 
 ## Links usados
 
