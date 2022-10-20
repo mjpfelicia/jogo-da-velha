@@ -1,7 +1,7 @@
 let x = document.querySelector(".x");
 let o = document.querySelector(".o");
 let boxes = document.querySelectorAll(".box");
-let buttons = document.querySelectorAll("#buttons-container buttons");
+let buttons = document.querySelectorAll("#buttons_container button");
 let messageConatiner = document.querySelector("#message");
 let messaText = document.querySelector("#message p");
 let secondPlayer;
@@ -33,6 +33,15 @@ for (let i = 0; i < boxes.length; i++) {
             // computar jogadas
             if (player1 == player2) {
                 player1++;
+
+
+                if (secondPlayer == 'ai-player') {
+                    // função executar a jogada
+                    computerPlay();
+                    player2++;
+                }
+
+
             } else {
                 player2++;
             }
@@ -45,10 +54,41 @@ for (let i = 0; i < boxes.length; i++) {
     });
 }
 
+// evento para saber se e 2 jogadores ou IA
+
+for (let i = 0; i < buttons.length; i++) {
+
+    buttons[i].addEventListener("click", function () {
+
+
+        secondPlayer = this.getAttribute("id")
+
+
+
+        for (let j = 0; j < buttons.length; j++) {
+            buttons[j].style.display = 'none';
+        }
+
+
+        setTimeout(function () {
+
+            let container = document.querySelector("#container");
+
+            container.classList.remove("hide");
+
+        }, 500)
+
+
+    });
+    console.log(buttons)
+}
+
+
 
 
 // verifica  quem vai jogar
 function ckeckJogador(player1, player2) {
+
     if (player1 == player2) {
         // x
         el = x;
@@ -274,9 +314,7 @@ function checkwinCondition() {
 }
 
 
-
 // function limpar o jogo, declara o vencedor e atualiza o placar
-
 function declareWinner(winner) {
     let scoreboardx = document.querySelector("#scoreboard-1");
     let scoreboardy = document.querySelector("#scoreboard-2");
@@ -328,3 +366,41 @@ function declareWinner(winner) {
 }
 
 
+
+
+// execultar a logica da jogada do cpu a (IA)
+function computerPlay() {
+
+    let cloneO = o.cloneNode(true);
+    counter = 0;
+    filled = 0;
+
+
+    for (let i = 0; i < boxes.length; i++) {
+
+        let randomNunber = Math.floor(Math.random() * 5);
+
+
+        // so preencer se estove vazio o filho
+        if (boxes[i].childNodes[0] == undefined) {
+
+            if (randomNunber <= 1) {
+                boxes[i].appendChild(cloneO);
+                counter++;
+                break;
+            }
+
+            // checagem de quantas estão preenchidas
+        } else {
+            filled++;
+        }
+
+
+    }
+
+    if (counter == 0 && filled == 0) {
+        computerPlay();
+    }
+
+
+}
