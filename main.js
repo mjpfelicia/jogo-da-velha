@@ -375,11 +375,9 @@ function computerPlay() {
     counter = 0;
     filled = 0;
 
-
     for (let i = 0; i < boxes.length; i++) {
 
         let randomNunber = Math.floor(Math.random() * 5);
-
 
         // so preencer se estove vazio o filho
         if (boxes[i].childNodes[0] == undefined) {
